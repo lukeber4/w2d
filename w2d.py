@@ -5,11 +5,8 @@ import time
 if len(sys.argv) < 2:
 	print "Missing word."
 else:
-
 	word=sys.argv[1]
-
 	filename=word+".out"
-
 	dic=set()
 	words=set()
 	dic.add(word)
@@ -46,8 +43,6 @@ else:
 				dic.add(b+str(9)+a)
 			else if l is 'b' or l is 'B':
 				dic.add(b+str(8)+a)	
-
 	with open(filename,"w") as f:
 		f.write('\n'.join(dic)+'\n')
-		
 	print "Generated "+str(len(dic))+" combinations. Saved in "+filename
