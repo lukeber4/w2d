@@ -11,7 +11,7 @@ $ time python w2d.py thisisatest
 
   real	0m0.235s
   user	0m0.224s
-  sys	  0m0.008s
+  sys	0m0.008s
 ```
 
 Showing a complete example:
@@ -21,7 +21,7 @@ $ time python w2d.py test
   
   real	0m0.015s
   user	0m0.008s
-  sys	  0m0.004s
+  sys	0m0.004s
 
 $ cat test.out | sort -r
   TEST
