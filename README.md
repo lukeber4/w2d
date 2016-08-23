@@ -1,12 +1,25 @@
 # w2d: Word to Dictionary
 Making a dictionary out of a word.
 
+```
+$ python w2d.py -h
+usage: python w2d.py [option] word
+Options and arguments available:
+-h : display help.
+-s : generate dictionary generating lower and uppercase letters.
+-i : generate dictionary without generating case changes.
+
+Example:
+python w2d.py -s test (81 combinations)
+python w2d.py -i test (16 combinations)
+```
+
 # Example
 
 Showing performance of large combinations:
 
 ```
-$ time python w2d.py thisisatest
+$ time python w2d.py -s thisisatest
   Generated 118098 combinations. Saved in thisisatest.out
 
   real	0m0.235s
@@ -16,7 +29,7 @@ $ time python w2d.py thisisatest
 
 Showing a complete example:
 ```
-$ time python w2d.py test
+$ time python w2d.py -s test
   Generated 81 combinations. Saved in test.out
   
   real	0m0.015s
