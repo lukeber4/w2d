@@ -2,7 +2,7 @@
 import sys
 import time
 
-l2n = dict(zip("aAeEiIlLoOsStTgGgB", "443311110055776688"))
+l2n = dict(zip("aAeEiIlLoOsStTgGbB", "443311110055776668"))  # case sensitive
 
 
 def letterToNumber(l):
@@ -19,7 +19,7 @@ def changeCase(l):
     return l
 
 
-def word2dictionary(word):
+def word2dictionary(word, case):
     dic = set()
     words = set()
     dic.add(word)
@@ -33,18 +33,42 @@ def word2dictionary(word):
                 b = b + w[j]
             for j in range(i+1, len(w)):
                 a = a + w[j]
-            dic.add(b + changeCase(letter) + a)
+            if case == "s":
+                dic.add(b + changeCase(letter) + a)
             dic.add(b + letterToNumber(letter) + a)
     return dic
 
 
 if len(sys.argv) < 2:
-    print "Missing word. Syntax: python w2d.py word"
+    print "Missing arguments. -h for help"
 else:
-    dic = set()
-    word = sys.argv[1]
-    dic = word2dictionary(word)
-    filename = word + ".out"
-    with open(filename, "w") as f:
-        f.write('\n'.join(dic)+'\n')
-    print "Generated " + str(len(dic)) + " combinations. Saved in " + filename
+    if sys.argv[1] == '-h':
+        print """usage: python w2d.py [option] word
+Options and arguments available:
+-h : display help.
+-s : generate dictionary generating lower and uppercase letters.
+-i : generate dictionary without generating case changes.
+
+Example:
+python w2d.py -s test (81 combinations)
+python w2d.py -i test (16 combinations)"""
+    elif len(sys.argv) == 3:
+        dic = set()
+        word = sys.argv[2]
+        arg = sys.argv[1]
+        if arg == '-i':
+            case = "i"
+            word = word.lower()
+        elif arg == '-s':
+            case = "s"
+        else:
+            print "Wrong argument. -h for help"
+            quit()
+        dic = word2dictionary(word, case)
+        filename = word + ".out"
+        with open(filename, "w") as f:
+            f.write('\n'.join(dic)+'\n')
+        print "Generated " + str(len(dic)) + " combinations. Saved " \
+            "in " + filename
+    else:
+        print 'Missing arguments. -h for help'
